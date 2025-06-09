@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import dotenv from "doentv";
+import dotenv from "dotenv";
 import * as authRepository from "../repositories/authRepository";
 
 dotenv.config();
@@ -59,5 +59,29 @@ export async function login(req, res) {
   } catch (error) {
     console.error("Erro ao fazer o login", error);
     return res.status(500).json({ message: "Erro interno no servidor" });
+  }
+}
+
+//logout do usuario
+export async function logout(req, res) {
+  res.clearCookie("token");
+  return res.json({ message: "Logout feito com sucesso." });
+}
+
+//perfil do usuário logado
+export async function perfil(req, res) {
+  const usuarioId = req.user.id;
+
+  try {
+    const usuario = await authRepository.findUserById(usuarioId);
+
+    if (!usuario) {
+      return res.status(404).json({ message: "Usuário não encontrado" });
+    }
+
+    return res.json(usuario);
+  } catch (error) {
+    console.error("Erro ao buscar o perfil:", error);
+    return res.status(500).json({ message: "Erro interno do servidor." });
   }
 }

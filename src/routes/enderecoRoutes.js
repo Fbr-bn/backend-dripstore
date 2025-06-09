@@ -1,12 +1,13 @@
 import { Router } from "express";
 import * as enderecoController from "../controllers/enderecoController.js";
+import authMiddleware from "../middlewares/authMiddleware.js";
 
 const router = Router();
 
-router.get("/", enderecoController.getAllEnderecos);
-router.get("/:id", enderecoController.getEnderecoById);
-router.post("/", enderecoController.createEndereco);
-router.put("/:id", enderecoController.updateEndereco);
-router.delete("/:id", enderecoController.deleteEndereco);
+router.get("/", authMiddleware, enderecoController.getAllEnderecos);
+router.get("/:id", authMiddleware, enderecoController.getEnderecoById);
+router.post("/", authMiddleware, enderecoController.createEndereco);
+router.put("/:id", authMiddleware, enderecoController.updateEndereco);
+router.delete("/:id", authMiddleware, enderecoController.deleteEndereco);
 
 export default router;

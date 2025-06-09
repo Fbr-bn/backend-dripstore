@@ -1,12 +1,13 @@
 import { Router } from "express";
 import * as pagamentoController from "../controllers/pagamentoController.js";
+import authMiddleware from "../middlewares/authMiddleware.js";
 
 const router = Router();
 
-router.get("/", pagamentoController.getAllPagamentos);
-router.get("/:id", pagamentoController.getPagamentoById);
-router.post("/", pagamentoController.createPagamento);
-router.put("/:id", pagamentoController.updatePagamento);
-router.delete("/:id", pagamentoController.deletePagamento);
+router.get("/", authMiddleware, pagamentoController.getAllPagamentos);
+router.get("/:id", authMiddleware, pagamentoController.getPagamentoById);
+router.post("/", authMiddleware, pagamentoController.createPagamento);
+router.put("/:id", authMiddleware, pagamentoController.updatePagamento);
+router.delete("/:id", authMiddleware, pagamentoController.deletePagamento);
 
 export default router;
