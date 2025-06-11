@@ -31,14 +31,18 @@ export async function getProdutoById(req, res) {
 
 // Criar novo produto
 export async function createProduto(req, res) {
-  const { nome, preco, estoque, categoria_id } = req.body;
+  const { marca, desconto, imagem, categoria_id, nome, preco, precoDesconto } =
+    req.body;
 
   try {
     const produto = await produtoRepository.createProduto({
+      marca,
+      desconto,
+      imagem,
+      categoria_id,
       nome,
       preco,
-      estoque,
-      categoria_id,
+      precoDesconto,
     });
     return res.status(201).json(produto);
   } catch (error) {

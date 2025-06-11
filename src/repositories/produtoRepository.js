@@ -21,8 +21,24 @@ export async function findProdutoById(id) {
   });
 }
 
-export async function createProduto({ nome, preco, estoque, categoria_id }) {
-  return await Produto.create({ nome, preco, estoque, categoria_id });
+export async function createProduto({
+  marca,
+  desconto,
+  imagem,
+  categoria_id,
+  nome,
+  preco,
+  precoDesconto,
+}) {
+  return await Produto.create({
+    marca,
+    desconto,
+    imagem,
+    categoria_id,
+    nome,
+    preco,
+    precoDesconto,
+  });
 }
 
 export async function updateProduto(

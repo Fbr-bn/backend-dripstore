@@ -9,4 +9,4 @@ router.post("/login", authController.login);
 router.post("/logout", authController.logout);
 router.get("/perfil", authMiddleware, authController.perfil);
 
-export default Router;
+export default router;
