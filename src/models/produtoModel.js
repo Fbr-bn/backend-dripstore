@@ -10,6 +10,28 @@ const Produto = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
+    marca: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    desconto: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+    },
+    imagem: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    categoria_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "categorias",
+        key: "id",
+      },
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE",
+    },
     nome: {
       type: DataTypes.STRING(150),
       allowNull: false,
@@ -18,26 +40,14 @@ const Produto = sequelize.define(
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     },
-    estoque: {
-      type: DataTypes.INTEGER,
+    precoDesconto: {
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
-      defaultValue: 0,
-    },
-    categoria_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "categorias",
-        key: "id",
-      },
-      onDelete: "SET NULL",
-      onUpdate: "CASCADE",
     },
   },
   {
     tableName: "produtos",
-    timestamps: true,
-    createdAt: "created_at",
-    updatedAt: "updated_at",
+    timestamps: false,
   }
 );
 
