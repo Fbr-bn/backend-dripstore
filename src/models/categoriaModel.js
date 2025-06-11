@@ -1,4 +1,4 @@
-import { DataTypes } from "sequelize";
+import { BOOLEAN, DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
 
 const Categoria = sequelize.define(
@@ -12,6 +12,16 @@ const Categoria = sequelize.define(
     nome: {
       type: DataTypes.STRING(100),
       allowNull: false,
+    },
+    slug: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  {
+    use_in_menu: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
   },
   {
