@@ -4,6 +4,7 @@ import sequelize from "./config/db.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import corsConfig from "./config/corsConfig.js";
+import "./models/associations.js";
 
 const app = express();
 

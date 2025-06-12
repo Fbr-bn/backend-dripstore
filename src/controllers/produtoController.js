@@ -54,14 +54,18 @@ export async function createProduto(req, res) {
 // Atualizar produto
 export async function updateProduto(req, res) {
   const { id } = req.params;
-  const { nome, preco, estoque, categoria_id } = req.body;
+  const { marca, desconto, imagem, categoria_id, nome, preco, precoDesconto } =
+    req.body;
 
   try {
     const produto = await produtoRepository.updateProduto(id, {
+      marca,
+      desconto,
+      imagem,
+      categoria_id,
       nome,
       preco,
-      estoque,
-      categoria_id,
+      precoDesconto,
     });
 
     if (!produto) {
