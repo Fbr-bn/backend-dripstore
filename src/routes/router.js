@@ -7,6 +7,9 @@ import pedidoRoutes from "./pedidoRoutes.js";
 import pagamentoRoutes from "./pagamentoRoutes.js";
 import pedidoItemRoutes from "./pedidoItemRoutes.js";
 import authRoutes from "./authRoutes.js";
+import imageRoutes from "./imageRoutes.js";
+import optionRoutes from "./optionRoutes.js";
+import product from "./productCategoriesModel.js";
 
 const router = Router();
 
@@ -18,5 +21,8 @@ router.use("/produtos", produtoRoutes);
 router.use("/pedidos", pedidoRoutes);
 router.use("/pagamentos", pagamentoRoutes);
 router.use("/pedido-itens", pedidoItemRoutes);
+router.use("/image", imageRoutes);
+router.use("/option", optionRoutes);
+router.use("/product", productCategoriesModel);
 
 export default router;
