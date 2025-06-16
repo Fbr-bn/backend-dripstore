@@ -1,4 +1,5 @@
 import * as usuarioRepository from "../repositories/usuarioRepository.js";
+import bcrypt from "bcrypt";
 
 // Buscar todos os usuarios
 export async function getAllUsuarios(req, res) {
@@ -28,7 +29,6 @@ export async function getUsuarioById(req, res) {
 
 // Criar novo usuario
 export async function createUsuario(req, res) {
-  // Pegue os campos corretos do modelo de usuário!
   const {
     nome,
     cpf,
@@ -44,6 +44,7 @@ export async function createUsuario(req, res) {
   } = req.body;
 
   try {
+    const senhaHash = await bcrypt.hash(senha, 10);
     const usuario = await usuarioRepository.createUsuario({
       nome,
       cpf,
@@ -55,7 +56,7 @@ export async function createUsuario(req, res) {
       cep,
       complemento,
       receber_ofertas,
-      senha,
+      senha: senhaHash,
     });
     return res.status(201).json(usuario);
   } catch (error) {
