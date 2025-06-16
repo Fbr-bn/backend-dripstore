@@ -1,62 +1,54 @@
-const { DataTypes } = require("sequelize");
+import { DataTypes } from "sequelize";
+import sequelize from "../config/db.js";
+import Produto from "./produtoModel.js";
 
-module.exports = (sequelize) => {
-  const ProductOption = sequelize.define(
-    "ProductOption",
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-        allowNull: false,
-      },
-      product_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: "Products",
-          key: "id",
-        },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
-      },
-      title: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      shape: {
-        type: DataTypes.ENUM("square", "circle"),
-        allowNull: false,
-        defaultValue: "square",
-      },
-      radius: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 0,
-      },
-      type: {
-        type: DataTypes.ENUM("text", "color"),
-        allowNull: false,
-        defaultValue: "text",
-      },
-      values: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+const ProductOption = sequelize.define(
+  "ProductOption",
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
     },
-    {
-      tableName: "product_options",
-      timestamps: false,
-    }
-  );
+    produto_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "produtos",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "CASCADE",
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    values: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    type: {
+      type: DataTypes.ENUM("text", "color"),
+      allowNull: false,
+      defaultValue: "text",
+    },
+  },
+  {
+    tableName: "product_options",
+    timestamps: false,
+  }
+);
 
-  // Como associar
-  // if (sequelize.models.Product) {
-  //   ProductOption.belongsTo(sequelize.models.Product, {
-  //     foreignKey: 'product_id',
-  //     as: 'product',
-  //   });
-  // }
+// Associação com Produto
+ProductOption.belongsTo(Produto, {
+  foreignKey: "produto_id",
+  as: "produto",
+});
 
-  return ProductOption;
-};
+export default ProductOption;
+
+// { "product_id": 3, "title": "Tamanho", "values": "39, 40, 41, 42", "type": "text" }
+
+// { "product_id": 3, "title": "Cores disponíveis", "values": "#00000, #00000, #00000", "type": "color" }

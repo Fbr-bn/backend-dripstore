@@ -31,10 +31,10 @@ export async function getOptionById(req, res) {
 
 //criar um novo option
 export async function createOption(req, res) {
-  const { nome, email, telefone } = req.body;
+  const { tamanho, cor } = req.body;
 
   try {
-    const option = await optionRepository.createOption(nome, email, telefone);
+    const option = await optionRepository.createOption(tamanho, cor);
 
     return res.status(201).json({
       message: "Option criado com sucesso",
@@ -49,7 +49,7 @@ export async function createOption(req, res) {
 //atualizar o option
 export async function updateOption(req, res) {
   const { id } = req.params;
-  const { nome, email, telefone } = req.body;
+  const { tamanho, cor } = req.body;
 
   try {
     const option = await optionRepository.updateOption(id, {

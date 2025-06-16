@@ -6,8 +6,8 @@ export async function getAllImages(req, res) {
     const images = await imageRepository.findAllImages();
     return res.json(images);
   } catch (error) {
-    console.error("Erro ao buscar todos os images:", error);
-    return res.status(400).json({ message: "Erro ao buscar images." });
+    console.error("Erro ao buscar todas as imagens:", error);
+    return res.status(400).json({ message: "Erro ao buscar imagens." });
   }
 }
 
@@ -19,56 +19,55 @@ export async function getImageById(req, res) {
     const image = await imageRepository.findImageById(id);
 
     if (!image) {
-      return res.status(404).json({ message: "Image não encontrado" });
+      return res.status(404).json({ message: "Imagem não encontrada" });
     }
 
     return res.status(200).json(image);
   } catch (error) {
-    console.error("Erro ao buscar o image pelo id:", error);
-    return res.status(400).json({ message: "Erro ao buscar o image por id" });
+    console.error("Erro ao buscar a imagem pelo id:", error);
+    return res.status(400).json({ message: "Erro ao buscar a imagem por id" });
   }
 }
 
 //criar um novo image
 export async function createImage(req, res) {
-  const { nome, email, telefone } = req.body;
+  const { produto_id, path } = req.body;
 
   try {
-    const image = await imageRepository.createImage(nome, email, telefone);
+    const image = await imageRepository.createImage({ produto_id, path }); // Corrigido aqui
 
     return res.status(201).json({
-      message: "Image criado com sucesso",
+      message: "Imagem criado com sucesso",
       image,
     });
   } catch (error) {
-    console.error("Erro ao criar o image", error);
-    return res.status(400).json({ message: "Erro ao criar o image" });
+    console.error("Erro ao criar a imagem", error);
+    return res.status(400).json({ message: "Erro ao criar a imagem" });
   }
 }
 
 //atualizar o image
 export async function updateImage(req, res) {
   const { id } = req.params;
-  const { nome, email, telefone } = req.body;
+  const { produto_id, path } = req.body;
 
   try {
     const image = await imageRepository.updateImage(id, {
-      nome,
-      email,
-      telefone,
+      produto_id,
+      path,
     });
 
     if (!image) {
-      return res.status(404).json({ message: "Image não encontrado" });
+      return res.status(404).json({ message: "Imagem não encontrada" });
     }
 
     return res.status(200).json({
-      message: "Image atualizado com sucesso",
+      message: "Imagem atualizada com sucesso",
       image,
     });
   } catch (error) {
-    console.error("Erro ao atualizar o image", error);
-    return res.status(400).json({ message: "Erro ao atualizar o image" });
+    console.error("Erro ao atualizar a imagem", error);
+    return res.status(400).json({ message: "Erro ao atualizar a imagem" });
   }
 }
 
@@ -80,12 +79,12 @@ export async function deleteImage(req, res) {
     const image = await imageRepository.deleteImage(id);
 
     if (!image) {
-      return res.status(404).json({ message: "Image não encontrado" });
+      return res.status(404).json({ message: "Imagem não encontrada" });
     }
 
-    return res.status(200).json({ message: "Image deletado com sucesso" });
+    return res.status(200).json({ message: "Imagem deletada com sucesso" });
   } catch (error) {
-    console.error("Erro ao deletar o image", error);
-    return res.status(400).json({ message: "Erro ao deletar o image" });
+    console.error("Erro ao deletar a imagem", error);
+    return res.status(400).json({ message: "Erro ao deletar a imagem" });
   }
 }

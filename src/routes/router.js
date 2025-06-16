@@ -13,16 +13,16 @@ import productCategoriesRouter from "./productCategoriesRoutes.js";
 
 const router = Router();
 
-router.use("/auth", authRoutes);
+router.use("/auth", authRoutes); // testado
 router.use("/clientes", clienteRoutes);
 router.use("/enderecos", enderecoRoutes);
-router.use("/categorias", categoriaRoutes);
+router.use("/categorias", categoriaRoutes); // testado
 router.use("/produtos", produtoRoutes);
 router.use("/pedidos", pedidoRoutes);
 router.use("/pagamentos", pagamentoRoutes);
 router.use("/pedido-itens", pedidoItemRoutes);
-router.use("/image", imageRoutes);
-router.use("/option", optionRoutes);
+router.use("/image", imageRoutes); //testado
+router.use("/option", optionRoutes); // testado
 router.use("/product", productCategoriesRouter);
 
 export default router;

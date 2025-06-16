@@ -10,11 +10,11 @@ const ProductImage = sequelize.define(
       autoIncrement: true,
       allowNull: false,
     },
-    product_id: {
+    produto_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "Products",
+        model: "produtos",
         key: "id",
       },
       onUpdate: "CASCADE",
@@ -23,7 +23,7 @@ const ProductImage = sequelize.define(
     enabled: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: false,
+      defaultValue: true,
     },
     path: {
       type: DataTypes.STRING,
@@ -44,4 +44,4 @@ const ProductImage = sequelize.define(
 //   });
 // }
 
-return ProductImage;
+export default ProductImage;
