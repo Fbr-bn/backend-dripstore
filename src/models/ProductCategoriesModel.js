@@ -10,7 +10,7 @@ const ProductCategories = sequelize.define(
       primaryKey: true,
       type: DataTypes.INTEGER,
     },
-    product_id: {
+    produto_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -20,7 +20,7 @@ const ProductCategories = sequelize.define(
       onUpdate: "CASCADE",
       onDelete: "CASCADE",
     },
-    category_id: {
+    categoria_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
