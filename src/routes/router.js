@@ -14,15 +14,15 @@ import productCategoriesRouter from "./productCategoriesRoutes.js";
 const router = Router();
 
 router.use("/auth", authRoutes); // testado
-router.use("/clientes", clienteRoutes);
-router.use("/enderecos", enderecoRoutes);
+router.use("/clientes", clienteRoutes); //testado
+router.use("/enderecos", enderecoRoutes); // testado
 router.use("/categorias", categoriaRoutes); // testado
-router.use("/produtos", produtoRoutes);
-router.use("/pedidos", pedidoRoutes);
-router.use("/pagamentos", pagamentoRoutes);
-router.use("/pedido-itens", pedidoItemRoutes);
+router.use("/produtos", produtoRoutes); //testado
+router.use("/pedidos", pedidoRoutes); //testado
+router.use("/pagamentos", pagamentoRoutes); // testado
+router.use("/pedido-itens", pedidoItemRoutes); // testado
 router.use("/image", imageRoutes); //testado
 router.use("/option", optionRoutes); // testado
-router.use("/product", productCategoriesRouter);
+router.use("/product", productCategoriesRouter); //testado
 
 export default router;

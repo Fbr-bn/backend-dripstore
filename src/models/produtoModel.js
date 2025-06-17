@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
+import Categoria from "./categoriaModel.js"; // <-- Adicione esta linha
 
 const Produto = sequelize.define(
   "Produto",
@@ -51,6 +52,6 @@ const Produto = sequelize.define(
 );
 
 // Associação com Categoria
-// Produto.belongsTo(Categoria, { foreignKey: "categoria_id", as: "categoria" });
+Produto.belongsTo(Categoria, { foreignKey: "categoria_id", as: "categoria" });
 
 export default Produto;
