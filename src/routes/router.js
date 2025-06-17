@@ -1,5 +1,4 @@
 import { Router } from "express";
-import clienteRoutes from "./clienteRoutes.js";
 import enderecoRoutes from "./enderecoRoutes.js";
 import categoriaRoutes from "./categoriaRoutes.js";
 import produtoRoutes from "./produtoRoutes.js";
@@ -10,11 +9,12 @@ import authRoutes from "./authRoutes.js";
 import imageRoutes from "./imageRoutes.js";
 import optionRoutes from "./optionRoutes.js";
 import productCategoriesRouter from "./productCategoriesRoutes.js";
+import usuarioRoutes from "./usuarioRoutes.js";
 
 const router = Router();
 
 router.use("/auth", authRoutes); // testado
-router.use("/clientes", clienteRoutes); //testado
+router.use("/usuarios", usuarioRoutes); //testado
 router.use("/enderecos", enderecoRoutes); // testado
 router.use("/categorias", categoriaRoutes); // testado
 router.use("/produtos", produtoRoutes); //testado

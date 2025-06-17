@@ -14,14 +14,11 @@ export async function getAllUsuarios(req, res) {
 // Buscar usuario por ID
 export async function getUsuarioById(req, res) {
   const { id } = req.params;
-
   try {
     const usuario = await usuarioRepository.findUsuarioById(id);
-
     if (!usuario) {
       return res.status(404).json({ message: "Usuario não encontrado." });
     }
-
     return res.json(usuario);
   } catch (error) {
     console.error("Erro ao buscar usuario:", error);
@@ -31,17 +28,34 @@ export async function getUsuarioById(req, res) {
 
 // Criar novo usuario
 export async function createUsuario(req, res) {
-  const { marca, desconto, imagem, categoria_id, nome, preco, precoDesconto } =
-    req.body;
+  // Pegue os campos corretos do modelo de usuário!
+  const {
+    nome,
+    cpf,
+    email,
+    celular,
+    endereco,
+    bairro,
+    cidade,
+    cep,
+    complemento,
+    receber_ofertas,
+    senha,
+  } = req.body;
 
   try {
     const usuario = await usuarioRepository.createUsuario({
-      desconto,
-      imagem,
-      categoria_id,
       nome,
-      preco,
-      precoDesconto,
+      cpf,
+      email,
+      celular,
+      endereco,
+      bairro,
+      cidade,
+      cep,
+      complemento,
+      receber_ofertas,
+      senha,
     });
     return res.status(201).json(usuario);
   } catch (error) {
@@ -53,14 +67,34 @@ export async function createUsuario(req, res) {
 // Atualizar usuario
 export async function updateUsuario(req, res) {
   const { id } = req.params;
-  const { nome, preco, estoque, categoria_id } = req.body;
+  // Pegue os campos corretos do modelo de usuário!
+  const {
+    nome,
+    cpf,
+    email,
+    celular,
+    endereco,
+    bairro,
+    cidade,
+    cep,
+    complemento,
+    receber_ofertas,
+    senha,
+  } = req.body;
 
   try {
     const usuario = await usuarioRepository.updateUsuario(id, {
       nome,
-      preco,
-      estoque,
-      categoria_id,
+      cpf,
+      email,
+      celular,
+      endereco,
+      bairro,
+      cidade,
+      cep,
+      complemento,
+      receber_ofertas,
+      senha,
     });
 
     if (!usuario) {
@@ -77,14 +111,11 @@ export async function updateUsuario(req, res) {
 // Deletar usuario
 export async function deleteUsuario(req, res) {
   const { id } = req.params;
-
   try {
     const usuario = await usuarioRepository.deleteUsuario(id);
-
     if (!usuario) {
       return res.status(404).json({ message: "Usuario não encontrado." });
     }
-
     return res.json({ message: "Usuario deletado com sucesso!" });
   } catch (error) {
     console.error("Erro ao deletar usuario:", error);

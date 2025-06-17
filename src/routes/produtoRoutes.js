@@ -5,10 +5,10 @@ import authMiddleware from "../middlewares/authMiddleware.js";
 const router = Router();
 
 // Rotas protegidas por autenticação
-router.get("/", authMiddleware, produtoController.getAllProdutos);
-router.get("/:id", authMiddleware, produtoController.getProdutoById);
-router.post("/", authMiddleware, produtoController.createProduto);
-router.put("/:id", authMiddleware, produtoController.updateProduto);
-router.delete("/:id", authMiddleware, produtoController.deleteProduto);
+router.get("/", produtoController.getAllProdutos);
+router.get("/:id", produtoController.getProdutoById);
+router.post("/", produtoController.createProduto);
+router.put("/:id", produtoController.updateProduto);
+router.delete("/:id", produtoController.deleteProduto);
 
 export default router;
