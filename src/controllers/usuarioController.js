@@ -36,7 +36,6 @@ export async function createUsuario(req, res) {
 
   try {
     const usuario = await usuarioRepository.createUsuario({
-      marca,
       desconto,
       imagem,
       categoria_id,
